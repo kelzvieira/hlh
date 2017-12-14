@@ -6,6 +6,7 @@ import auth from './lib/auth';
 import FrontPage from './components/FrontPage';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import InputForm from './components/InputForm';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,9 +26,9 @@ export default class App extends React.Component {
     })
   }
 
-  setUser = (uid) => {
+  setUser = (user) => {
     this.setState({
-      user: uid,
+      user: user,
     })
   }
 
@@ -38,6 +39,8 @@ export default class App extends React.Component {
         messages: snapshot.val() || {}
       })
     }) */
+
+    //ADD A CHECK FOR EXISTING USER TO AVOID LOGIN / SIGN UP - FRONT PAGE
 
     auth.onAuthStateChanged(user => {
       this.setState({
@@ -53,7 +56,7 @@ export default class App extends React.Component {
         <FrontPage {...this.state} onDisplay={this.setDisplay} onUser={this.setUser}/>
         <SignUp {...this.state} onDisplay={this.setDisplay} onUser={this.setUser}/>
         <Login {...this.state} onDisplay={this.setDisplay} onUser={this.setUser}/>
-        <Text>Placeholder text</Text>
+        <InputForm {...this.state} onDisplay={this.setDisplay} />
       </View>
     );
   }
@@ -62,8 +65,9 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#ffffff',
   },
 });

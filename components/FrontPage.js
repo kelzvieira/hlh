@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { Ionicons, FontAwesome, SimpleLineIcons } from '@expo/vector-icons';
+import { SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class FrontPage extends React.Component {
   onPress = (value) => {
@@ -14,14 +14,19 @@ export default class FrontPage extends React.Component {
     }
     return (
       <View style={styles.container}>
+        <MaterialCommunityIcons name="home-circle" size={32} color="#fff" />
         <TouchableHighlight style={styles.button} onPress={() => this.onPress("login")} underlayColor='#1591fe'>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>
+            <SimpleLineIcons name="login" size={18} color="#fff" />
+            Login</Text>
         </TouchableHighlight>
-        <SimpleLineIcons name="login" size={32} color="#fff" />
+
         <TouchableHighlight style={styles.button} onPress={() => this.onPress("sign-up")} underlayColor='#1591fe'>
-          <Text style={styles.buttonText}>Create account</Text>
+          <View style={styles.buttonInner}>
+            <SimpleLineIcons style={styles.icon} name="user-follow" size={18} color="#fff" />
+            <Text style={styles.buttonText}>Create account</Text>
+          </View>
         </TouchableHighlight>
-        <SimpleLineIcons name="user-follow" size={32} color="#fff" />
       </View>
     );
   }
@@ -34,10 +39,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonInner: {
+    alignSelf: 'stretch',
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+  },
   buttonText: {
     fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    textAlign: 'center',
   },
   button: {
     padding: 10,
@@ -48,5 +58,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  icon: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    alignSelf: 'flex-start',
   }
 });

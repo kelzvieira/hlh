@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     marginTop: 50,
-    padding: 20,
+    padding: 10,
     backgroundColor: '#ffffff',
   },
   title: {

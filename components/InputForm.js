@@ -10,13 +10,24 @@ const User = t.struct({
   password: t.String,
 });
 
-export default class SignUp extends React.Component {
+export default class InputForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formPage: 1,
+      formInput: {
+        propertyValue: '',
+        depositValue: '',
+        interestRate: '',
+      }
+    }
+  }
 
   handleSignUp = () => {
     const value = this.refs.form.getValue()
     const email = value.email
     const password = value.password
-    console.log(email,password)
     auth.createUserWithEmailAndPassword(email, password)
     const user = auth.onAuthStateChanged(user => {
       return user
@@ -26,7 +37,7 @@ export default class SignUp extends React.Component {
   }
 
   render() {
-    if(this.props.display !== 'sign-up') {
+    if(this.props.display !== 'input-form') {
         return null
     }
     return (
@@ -66,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1591fe',
     borderColor: '#1591fe',
     borderWidth: 1,
-    borderRadius: 2,
+    borderRadius: 8,
     marginBottom: 10,
     paddingLeft: 20,
     paddingRight: 20,
